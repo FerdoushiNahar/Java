@@ -1,6 +1,7 @@
 The Java Collections Framework is a comprehensive architecture introduced in Java SE 2 (1998) for managing in-memory data. It provides a unified set of interfaces and classes to store, retrieve, and manipulate data efficiently. Significant updates were made in Java SE 5 with the addition of generics, and in Java 8 with the introduction of lambda expressions and default methods in interfaces.
 
 **Key Components:**
+### <span style="color:blue;">Key Components:</span>
 
 1. **Interfaces and Implementations:**
    - *Collection Interface:* The root interface for storing groups of objects, extended by more specific subinterfaces like List, Set, and Queue.
