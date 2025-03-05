@@ -3,16 +3,16 @@ The Java Collections Framework is a comprehensive architecture introduced in Jav
 **Key Components:**
 
 1. **Interfaces and Implementations:**
-   - *Collection Interface:* The root interface for storing groups of objects, extended by more specific subinterfaces like List, Set, and Queue.
-   - *Map Interface:* Manages key-value pairs, allowing efficient data retrieval based on unique keys.
+   - *Collection Interface:* The root interface for storing groups of objects, extended by more specific subinterfaces like List, Set, and Queue.
+   - *Map Interface:* Manages key-value pairs, allowing efficient data retrieval based on unique keys.
 
 2. **Choosing the Right Collection:**
    - Decisions should be based on factors such as data access patterns (e.g., iteration vs. random access), the need for ordering, allowance of duplicates, and concurrency requirements.
 
 3. **Common Implementations:**
-   - *List:* Ordered collections that allow duplicates. Implementations include ArrayList and LinkedList.
-   - *Set:* Unordered collections that disallow duplicates. Implementations include HashSet and TreeSet.
-   - *Map:* Collections that map keys to values, disallowing duplicate keys. Implementations include HashMap and TreeMap.
-   - *Queue:* Collections designed for holding elements prior to processing, typically in FIFO order. Implementations include LinkedList and PriorityQueue.
+   - *List:* Ordered collections that allow duplicates. Implementations include ArrayList and LinkedList.
+   - *Set:* Unordered collections that disallow duplicates. Implementations include HashSet and TreeSet.
+   - *Map:* Collections that map keys to values, disallowing duplicate keys. Implementations include HashMap and TreeMap.
+   - *Queue:* Collections designed for holding elements prior to processing, typically in FIFO order. Implementations include LinkedList and PriorityQueue.
 
-The framework's versatility and efficiency make it an essential tool for Java developers, enabling the effective management of diverse data structures. 
+The framework's versatility and efficiency make it an essential tool for Java developers, enabling the effective management of diverse data structures.
