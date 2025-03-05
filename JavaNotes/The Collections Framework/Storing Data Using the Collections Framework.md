@@ -2,6 +2,12 @@ The Java Collections Framework is a comprehensive architecture introduced in Jav
 
 **Key Components:**
 ### <span style="color:blue;">Key Components:</span>
+### 🔹 Key Components:
+
+#### 🟢 Interfaces and Implementations:
+- **Collection Interface:** The root interface for storing groups of objects, extended by more specific subinterfaces like List, Set, and Queue.
+- **Map Interface:** Manages key-value pairs, allowing efficient data retrieval based on unique keys.
+
 
 1. **Interfaces and Implementations:**
    - *Collection Interface:* The root interface for storing groups of objects, extended by more specific subinterfaces like List, Set, and Queue.
