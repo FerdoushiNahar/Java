@@ -166,4 +166,200 @@ map.put("Two", 2);
 ```
 
 ---
+### 2)**Java Collection Hierarchy: Interview Questions and Answers**
+
+---
+
+### **1. What is the Collection hierarchy in Java?**
+**Answer:**  
+The **Collection hierarchy** is a structured set of interfaces and classes in the Java Collections Framework that provides different ways to store, retrieve, and manipulate elements.  
+
+- **Root Interface:** `Iterable`
+- **Main Interface:** `Collection`
+  - **Subinterfaces:** `List`, `Set`, `Queue`
+  - **`Set` further extends into:** `SortedSet`, `NavigableSet`
+
+Additionally, `Map` is a separate hierarchy that does not extend `Collection`.
+
+---
+
+### **2. What is the purpose of the `Iterable` interface in Java?**
+**Answer:**  
+- `Iterable<T>` is the root interface that allows any class to be iterated using the **enhanced for-loop (`for-each` loop)**.  
+- It provides an `iterator()` method that returns an `Iterator` object.  
+- It was introduced in **Java SE 5** to support enhanced looping.
+
+**Example:**
+```java
+List<String> list = Arrays.asList("A", "B", "C");
+for (String element : list) {
+    System.out.println(element); // Iterating using for-each
+}
+```
+
+---
+
+### **3. What is the difference between `Collection`, `List`, and `Set`?**
+**Answer:**  
+
+| Feature  | Collection | List | Set |
+|----------|-----------|------|-----|
+| **Definition** | Root interface for collections | Ordered collection of elements | Unordered collection of unique elements |
+| **Duplicates Allowed?** | Yes | Yes | No |
+| **Order Maintained?** | No | Yes (insertion order) | No |
+| **Common Implementations** | `ArrayList`, `HashSet`, `LinkedList` | `ArrayList`, `LinkedList` | `HashSet`, `TreeSet` |
+
+---
+
+### **4. What are the key differences between `List` and `Set`?**
+**Answer:**  
+
+| Feature  | List | Set |
+|----------|------|-----|
+| **Duplicates Allowed?** | Yes | No |
+| **Order Maintained?** | Yes (Insertion Order) | No (except `LinkedHashSet`) |
+| **Index-Based Access?** | Yes | No |
+| **Example Implementations** | `ArrayList`, `LinkedList` | `HashSet`, `TreeSet` |
+
+**Example of List (allows duplicates):**
+```java
+List<Integer> list = new ArrayList<>();
+list.add(10);
+list.add(20);
+list.add(10); // Duplicate allowed
+System.out.println(list); // Output: [10, 20, 10]
+```
+
+**Example of Set (no duplicates):**
+```java
+Set<Integer> set = new HashSet<>();
+set.add(10);
+set.add(20);
+set.add(10); // Duplicate ignored
+System.out.println(set); // Output: [10, 20]
+```
+
+---
+
+### **5. How does `List` maintain order, and why doesn’t `Set`?**
+**Answer:**  
+- `List` maintains the **insertion order** because its implementations like `ArrayList` and `LinkedList` store elements **sequentially**.
+- `Set` does **not maintain order**, except `LinkedHashSet` (which preserves insertion order) and `TreeSet` (which sorts elements).
+
+---
+
+### **6. What is `SortedSet`, and how is it different from `Set`?**
+**Answer:**  
+- `SortedSet` extends `Set` and ensures that elements are **sorted in ascending order**.
+- **Common Implementations:** `TreeSet`
+- **How sorting is done?**
+  - By **natural ordering** (`Comparable` interface)
+  - By **custom ordering** (`Comparator` interface)
+
+**Example:**
+```java
+SortedSet<Integer> sortedSet = new TreeSet<>();
+sortedSet.add(30);
+sortedSet.add(10);
+sortedSet.add(20);
+System.out.println(sortedSet); // Output: [10, 20, 30] (Sorted automatically)
+```
+
+---
+
+### **7. What is `NavigableSet`, and how is it different from `SortedSet`?**
+**Answer:**  
+- `NavigableSet` extends `SortedSet` and provides extra navigation methods:
+  - **Get next/lower/higher elements:** `higher()`, `lower()`
+  - **Reverse order iteration:** `descendingIterator()`
+  - **Subsets based on conditions:** `headSet()`, `tailSet()`
+
+**Example:**
+```java
+NavigableSet<Integer> navSet = new TreeSet<>();
+navSet.add(10);
+navSet.add(20);
+navSet.add(30);
+System.out.println(navSet.higher(15)); // Output: 20 (Next higher element)
+System.out.println(navSet.descendingSet()); // Output: [30, 20, 10]
+```
+
+---
+
+### **8. Can a `SortedSet` contain duplicate elements?**
+**Answer:**  
+No, a `SortedSet` does not allow duplicate elements because it extends `Set`, which **does not allow duplicates**.
+
+---
+
+### **9. How does `SortedSet` sort elements?**
+**Answer:**  
+A `SortedSet` sorts elements using:
+1. **Natural Ordering** (`Comparable` interface - `compareTo()` method)
+2. **Custom Ordering** (`Comparator` interface - `compare()` method)
+
+**Example of natural ordering (`Comparable`):**
+```java
+class Student implements Comparable<Student> {
+    int id;
+    String name;
+
+    public Student(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public int compareTo(Student s) {
+        return this.id - s.id; // Sorting by ID
+    }
+}
+```
+
+**Example of custom ordering (`Comparator`):**
+```java
+Comparator<Student> nameComparator = (s1, s2) -> s1.name.compareTo(s2.name);
+SortedSet<Student> set = new TreeSet<>(nameComparator);
+```
+
+---
+
+### **10. What is the difference between sorting (`SortedSet`) and ordering (`List`)?**
+**Answer:**
+- **Sorting (`SortedSet`)**: The elements are **arranged** in a predefined order (e.g., ascending order).
+- **Ordering (`List`)**: The order in which elements are **added** is preserved.
+
+---
+
+### **11. What are the key methods provided by the `SortedSet` interface?**
+**Answer:**
+- `first()` – Retrieves the **smallest** element.
+- `last()` – Retrieves the **largest** element.
+- `headSet(E e)` – Retrieves all elements **less than** `e`.
+- `tailSet(E e)` – Retrieves all elements **greater than or equal** to `e`.
+- `subSet(E from, E to)` – Retrieves elements **between** `from` and `to`.
+
+---
+
+### **12. What are the additional methods provided by `NavigableSet`?**
+**Answer:**
+- `lower(E e)`: Returns the **greatest** element less than `e`.
+- `higher(E e)`: Returns the **smallest** element greater than `e`.
+- `floor(E e)`: Returns the **greatest** element less than or equal to `e`.
+- `ceiling(E e)`: Returns the **smallest** element greater than or equal to `e`.
+- `descendingSet()`: Returns the elements in **reverse order**.
+
+---
+
+### **13. What are the real-world use cases of `SortedSet` and `NavigableSet`?**
+**Answer:**
+- **`SortedSet` Use Cases:**
+  - Storing **unique** values in a **sorted** manner (e.g., ranking system, leaderboards).
+  - Implementing an **autocomplete** feature (suggestions in alphabetical order).
+  
+- **`NavigableSet` Use Cases:**
+  - Searching for the **nearest** value in a sorted dataset (e.g., stock prices).
+  - Maintaining **historical records** with quick access to next/previous entries.
+
+---
+
 
