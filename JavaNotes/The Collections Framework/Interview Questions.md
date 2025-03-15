@@ -362,4 +362,197 @@ SortedSet<Student> set = new TreeSet<>(nameComparator);
 
 ---
 
+### 3) **Interview Questions on Java Collection Interface (With Answers)**  
 
+---
+
+### **1. What is the `Collection` interface in Java, and why is it important?**  
+**Answer:**  
+The `Collection` interface is the root interface of the Java Collections Framework (excluding `Map`). It represents a group of objects, known as elements, and provides methods for:  
+- Adding (`add()`), removing (`remove()`), and checking elements (`contains()`).  
+- Performing set operations like **union** (`addAll()`), **intersection** (`retainAll()`), and **difference** (`removeAll()`).  
+- Retrieving size (`size()`), checking emptiness (`isEmpty()`), and clearing (`clear()`).  
+- Converting collections to arrays using `toArray()`.  
+
+---
+
+### **2. What are the key methods provided by the `Collection` interface?**  
+**Answer:**  
+| Method | Description |
+|--------|-------------|
+| `add(E e)` | Adds an element to the collection. |
+| `remove(Object o)` | Removes a specified element. |
+| `contains(Object o)` | Checks if an element exists. |
+| `size()` | Returns the number of elements. |
+| `isEmpty()` | Checks if the collection is empty. |
+| `clear()` | Removes all elements from the collection. |
+| `addAll(Collection<? extends E> c)` | Adds all elements from another collection. |
+| `removeAll(Collection<?> c)` | Removes all matching elements from another collection. |
+| `retainAll(Collection<?> c)` | Retains only elements that exist in another collection. |
+| `toArray()` | Converts the collection to an array. |
+
+---
+
+### **3. How does the `add()` method work in a `Collection`? Can it fail?**  
+**Answer:**  
+- `add(E e)` inserts an element into the collection and returns **true** if the collection was modified.  
+- It **never fails** for `List`, but it **may fail** for `Set` if the element already exists.  
+- Example:  
+```java
+Collection<String> strings = new ArrayList<>();
+strings.add("one");
+strings.add("two");
+System.out.println(strings); // Output: [one, two]
+```
+
+---
+
+### **4. How does `remove()` work? What happens if the element does not exist?**  
+**Answer:**  
+- `remove(Object o)` removes the first occurrence of `o` and returns `true`. If `o` does not exist, it returns `false`.  
+- Example:  
+```java
+Collection<String> strings = new ArrayList<>();
+strings.add("one");
+strings.add("two");
+System.out.println(strings.remove("one")); // Output: true
+System.out.println(strings.remove("three")); // Output: false
+```
+
+---
+
+### **5. How does `contains()` work in a `Collection`?**  
+**Answer:**  
+- `contains(Object o)` checks whether an element exists in the collection and returns `true` or `false`.  
+- Example:  
+```java
+Collection<String> strings = new ArrayList<>();
+strings.add("one");
+strings.add("two");
+
+System.out.println(strings.contains("one")); // Output: true
+System.out.println(strings.contains("three")); // Output: false
+```
+
+---
+
+### **6. What is the difference between `addAll()`, `removeAll()`, and `retainAll()`?**  
+**Answer:**  
+| Method | Description | Example |
+|--------|-------------|---------|
+| `addAll(Collection<?> c)` | Adds all elements from `c` to the current collection. | `list.addAll(set);` |
+| `removeAll(Collection<?> c)` | Removes elements from current collection that exist in `c`. | `list.removeAll(set);` |
+| `retainAll(Collection<?> c)` | Retains only elements that exist in `c`, removing the rest. | `list.retainAll(set);` |
+
+**Example:**
+```java
+Collection<String> strings = new ArrayList<>(List.of("one", "two", "three"));
+Collection<String> first = new ArrayList<>(List.of("one", "four"));
+
+strings.removeAll(first); // Removes "one"
+System.out.println(strings); // Output: [two, three]
+```
+
+---
+
+### **7. How do `size()` and `isEmpty()` work?**  
+**Answer:**  
+- `size()` returns the number of elements in the collection.  
+- `isEmpty()` returns `true` if the collection contains no elements.  
+
+**Example:**  
+```java
+Collection<String> strings = new ArrayList<>();
+System.out.println(strings.isEmpty()); // Output: true
+strings.add("one");
+System.out.println(strings.size()); // Output: 1
+```
+
+---
+
+### **8. How does the `clear()` method work?**  
+**Answer:**  
+- `clear()` removes all elements from the collection.  
+- After calling `clear()`, `size()` returns `0`.  
+
+**Example:**  
+```java
+Collection<String> strings = new ArrayList<>();
+strings.add("one");
+strings.add("two");
+strings.clear();
+System.out.println(strings.size()); // Output: 0
+```
+
+---
+
+### **9. How can we convert a `Collection` to an array using `toArray()`?**  
+**Answer:**  
+- `toArray()` converts a collection into an array.  
+- `toArray(T[] a)` returns an array of the specified type.  
+
+**Example using an empty array:**  
+```java
+Collection<String> strings = List.of("one", "two");
+String[] result = strings.toArray(new String[0]);
+System.out.println(Arrays.toString(result)); // Output: [one, two]
+```
+
+---
+
+### **10. What is the difference between `toArray(T[] a)` and `toArray(IntFunction<T[]>)`?**  
+**Answer:**  
+- `toArray(T[] a)`: Uses a provided array or creates a new one if the given array is too small.  
+- `toArray(IntFunction<T[]>)`: Uses a lambda expression to create an array dynamically.  
+
+**Example using method reference:**  
+```java
+Collection<String> strings = List.of("one", "two");
+String[] result = strings.toArray(String[]::new);
+System.out.println(Arrays.toString(result)); // Output: [one, two]
+```
+
+---
+
+### **11. How does `removeIf()` work, and why is it useful?**  
+**Answer:**  
+- `removeIf(Predicate<? super E> filter)` removes elements that match the given condition.  
+- Introduced in **Java 8** for better readability and performance.  
+
+**Example:**  
+```java
+Collection<String> strings = new ArrayList<>(List.of(null, "", "one", "two", ""));
+strings.removeIf(s -> s == null || s.isEmpty());
+System.out.println(strings); // Output: [one, two]
+```
+
+---
+
+### **12. Why is `ArrayList` commonly used as the default implementation of `Collection`?**  
+**Answer:**  
+- `ArrayList` provides **fast access** (`O(1)`) to elements using an index.  
+- It is **resizable** dynamically.  
+- It supports **all `Collection` methods** efficiently.  
+- **Example:**  
+```java
+Collection<String> strings = new ArrayList<>();
+strings.add("Java");
+strings.add("Collections");
+System.out.println(strings); // Output: [Java, Collections]
+```
+
+---
+
+### **13. What is the best implementation for `Collection` in most cases?**  
+**Answer:**  
+- Use **`ArrayList`** when:
+  - You need **fast random access** (`O(1)`).
+  - Insertions and deletions are **not frequent**.
+- Use **`LinkedList`** when:
+  - Frequent **insertions and deletions** in the middle (`O(1)`).
+- Use **`HashSet`** when:
+  - You **don't need duplicates**.
+- Use **`TreeSet`** when:
+  - You need **sorted elements**.
+
+---
