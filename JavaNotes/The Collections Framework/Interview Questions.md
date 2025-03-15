@@ -1,4 +1,4 @@
-1) ### **Java Collections Framework Interview Questions and Answers**
+### 1) **Java Collections Framework Interview Questions and Answers**
 
 #### **1. What is the Java Collections Framework, and why is it important?**
 **Answer:**  
